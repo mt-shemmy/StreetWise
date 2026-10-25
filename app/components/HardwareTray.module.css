@@ -19,3 +19,10 @@
   border-color: var(--tray-accent);
 }
 
+
+.tray { flex-direction: row; border-top: 1px solid var(--tray-border); }
+@media (max-width: 600px) {
+  .tray { flex-direction: column; }
+  .tray > div:first-child { width: 100% !important; padding: 12px 16px !important; border-right: 0 !important; border-bottom: 1px solid var(--tray-border); }
+  .tray > div:last-child { width: 100%; padding: 16px !important; gap: 12px !important; }
+}

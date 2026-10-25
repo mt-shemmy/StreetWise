@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Streetwise</title>
 
-<link rel="stylesheet" href="css/globals.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/globals.css">
 
 </head>
 
@@ -886,7 +886,7 @@
                         <div class="creator-icon">
 
                             <img
-                                src="prajwal.png"
+                                src="Prajwal.png"
                                 alt="PS"
                             >
 
@@ -988,7 +988,7 @@
     onclick="closePreferencesOnBackdrop(event)"
 >
 
-    <div class="credits-box">
+    <div class="credits-box preferences-panel" role="dialog" aria-modal="true" aria-labelledby="preferencesTitle">
 
 
         <button
@@ -1002,13 +1002,12 @@
 
         <div class="credits-header">
 
-            <h2>
+            <h2 id="preferencesTitle">
                 Preferences
             </h2>
 
             <p>
-                Manage your account, appearance, and learning
-                experience.
+                Personalize your profile and learning experience.
             </p>
 
         </div>
@@ -1042,9 +1041,9 @@
 
             <div class="prefs-section">
 
-                <h3 class="prefs-section-title">
+                <label class="prefs-section-title" for="prefsNicknameInput">
                     Nickname
-                </h3>
+                </label>
 
                 <p class="prefs-section-desc">
                     This is shown in the navigation bar and can be
@@ -1106,6 +1105,7 @@
                         <input
                             type="checkbox"
                             id="darkModeToggle"
+                            aria-label="Dark mode"
                             onchange="handleDarkModeToggle(this)"
                         >
 
@@ -1131,70 +1131,72 @@
                     emphasize in your lessons and labs.
                 </p>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic1"
-                        class="topic-checkbox"
-                        value="Networking"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic1">Networking</label>
-                </div>
+                <div class="prefs-topics" role="group" aria-label="Learning topics">
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic1"
+                            class="topic-checkbox"
+                            value="Networking"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic1">Networking</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic2"
-                        class="topic-checkbox"
-                        value="Security"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic2">Security</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic2"
+                            class="topic-checkbox"
+                            value="Security"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic2">Security</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic3"
-                        class="topic-checkbox"
-                        value="Hardware & Devices"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic3">Hardware & Devices</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic3"
+                            class="topic-checkbox"
+                            value="Hardware & Devices"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic3">Hardware & Devices</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic4"
-                        class="topic-checkbox"
-                        value="Operating Systems"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic4">Operating Systems</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic4"
+                            class="topic-checkbox"
+                            value="Operating Systems"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic4">Operating Systems</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic5"
-                        class="topic-checkbox"
-                        value="Cloud Computing"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic5">Cloud Computing</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic5"
+                            class="topic-checkbox"
+                            value="Cloud Computing"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic5">Cloud Computing</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic6"
-                        class="topic-checkbox"
-                        value="Programming Basics"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic6">Programming Basics</label>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic6"
+                            class="topic-checkbox"
+                            value="Programming Basics"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic6">Programming Basics</label>
+                    </div>
                 </div>
 
             </div>
@@ -1202,13 +1204,16 @@
 
             <!-- log out -->
 
-            <button
-                type="button"
-                class="prefs-logout-button"
-                onclick="logoutUser()"
-            >
-                Log out
-            </button>
+            <div class="prefs-footer">
+                <p>Theme and topic changes save automatically.</p>
+                <button
+                    type="button"
+                    class="prefs-logout-button"
+                    onclick="logoutUser()"
+                >
+                    Log out
+                </button>
+            </div>
 
 
         </div>

@@ -14,7 +14,7 @@ export default function LabEnvironment() {
   const course = CURRICULUM[topicId];
   const lesson = course?.lessons[0];
 
-  const [themeMode, setThemeMode] = useState<'light' | 'dark'>('dark');
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     try {
@@ -70,10 +70,10 @@ export default function LabEnvironment() {
 
   return (
     <div
+      className="lab-workspace"
       style={{
         display: 'flex',
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
         backgroundColor: theme.bg,
         color: theme.text,
         transition: 'background-color 0.3s ease',
@@ -82,22 +82,23 @@ export default function LabEnvironment() {
       <ReadingPane course={course} lesson={lesson} theme={theme} />
 
       <div
+        className="lab-simulator"
         style={{
           flexGrow: 1,
+          minWidth: 0,
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          height: '100vh',
           overflow: 'hidden',
         }}
       >
         {/* Canvas occupies remaining top space */}
-        <div style={{ flexGrow: 1, position: 'relative' }}>
+        <div style={{ flexGrow: 1, minHeight: 0, position: 'relative' }}>
           <SimulatorCanvas theme={theme} />
         </div>
 
         {/* The horizontal Hardware Tray docked at the bottom */}
-        <div style={{ height: '160px', flexShrink: 0, zIndex: 10, boxShadow: '0 -10px 30px rgba(0,0,0,0.05)' }}>
+        <div className="lab-toolbox" style={{ flexShrink: 0, zIndex: 10, boxShadow: '0 -10px 30px rgba(0,0,0,0.05)' }}>
           <HardwareTray theme={theme} />
         </div>
       </div>

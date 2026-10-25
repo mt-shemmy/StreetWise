@@ -2,6 +2,10 @@
    Streetwise Authentication & Account Management
    Handles Sign up, Sign in, Google OAuth simulation, Sessions, and Passwords
    ========================================================================== */
+// Shared with the dashboard and React lab; keep these keys stable for saved users.
+const STREETWISE_ACCOUNTS_KEY = "streetwiseAccounts";
+const STREETWISE_SESSION_KEY = "streetwiseCurrentUser";
+const STREETWISE_PREFERENCES_KEY = "streetwisePreferences";
 const STREETWISE_PROGRESS_KEY = "streetwiseProgress";
 
 /* progress storage helpers */

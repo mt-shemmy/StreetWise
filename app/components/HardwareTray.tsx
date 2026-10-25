@@ -22,12 +22,12 @@ export default function HardwareTray({ theme }: HardwareTrayProps) {
 
   return (
     <aside
+      className={styles.tray}
       style={{
         width: '100%',
         height: '100%',
         background: theme.panel,
         display: 'flex',
-        flexDirection: 'row',
         zIndex: 10,
         ...trayVars,
       }}
@@ -41,7 +41,8 @@ export default function HardwareTray({ theme }: HardwareTrayProps) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          minWidth: '260px',
+          minWidth: 0,
+          width: '260px',
           flexShrink: 0,
         }}
       >
@@ -83,6 +84,8 @@ export default function HardwareTray({ theme }: HardwareTrayProps) {
           flexDirection: 'row',
           gap: '20px',
           overflowX: 'auto',
+          minWidth: 0,
+          flex: 1,
           alignItems: 'center',
         }}
       >

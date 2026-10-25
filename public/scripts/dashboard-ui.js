@@ -245,98 +245,10 @@ function getLevelProgress(xp){
 
 /* BUDDIES */
 
-const BUDDIES = {
-
-    fox:{
-        name:"Fox",
-        emoji:{
-            baby:"🦊",
-            teen:"🦊",
-            adult:"🦊"
-        },
-        description:
-            "Quick, curious, and always exploring."
-    },
-
-    owl:{
-        name:"Owl",
-        emoji:{
-            baby:"🐣",
-            teen:"🦉",
-            adult:"🦉"
-        },
-        description:
-            "Loves learning new things."
-    },
-
-    raccoon:{
-        name:"Raccoon",
-        emoji:{
-            baby:"🦝",
-            teen:"🦝",
-            adult:"🦝"
-        },
-        description:
-            "Resourceful and great at solving problems."
-    },
-
-    cat:{
-        name:"Cat",
-        emoji:{
-            baby:"🐱",
-            teen:"🐈",
-            adult:"🐈‍⬛"
-        },
-        description:
-            "Independent and clever."
-    },
-
-    dog:{
-        name:"Dog",
-        emoji:{
-            baby:"🐶",
-            teen:"🐕",
-            adult:"🐕‍🦺"
-        },
-        description:
-            "Loyal and ready to learn."
-    },
-
-    penguin:{
-        name:"Penguin",
-        emoji:{
-            baby:"🐧",
-            teen:"🐧",
-            adult:"🐧"
-        },
-        description:
-            "Keeps cool when things get complicated."
-    },
-
-    axolotl:{
-        name:"Axolotl",
-        emoji:{
-            baby:"🦎",
-            teen:"🦎",
-            adult:"🦎"
-        },
-        description:
-            "Adaptable and resilient."
-    }
-
-};
+const BUDDIES = window.StreetwiseBuddies.definitions;
 
 function getBuddyStage(xp){
-
-    if(xp >= 750){
-        return "adult";
-    }
-
-    if(xp >= 300){
-        return "teen";
-    }
-
-    return "baby";
+    return window.StreetwiseBuddies.stageFor(xp);
 }
 
 function getBuddyStageName(stage){
@@ -353,40 +265,34 @@ function getBuddyStageName(stage){
 }
 
 function getBuddyProgress(xp){
-
-    if(xp < 300){
-
-        return {
-            current:xp,
-            needed:300,
-            nextStage:"Teen"
-        };
-    }
-
-    if(xp < 750){
-
-        return {
-            current:xp - 300,
-            needed:450,
-            nextStage:"Adult"
-        };
-    }
-
-    return {
-        current:450,
-        needed:450,
-        nextStage:"Adult"
-    };
+    return window.StreetwiseBuddies.progressFor(xp);
 }
 
 
 /* BADGES */
 
+// Fixed vector artwork keeps milestones consistent across platforms.
+const BADGE_ICON_PATHS = {
+  "account": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"3\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\"/><path d=\"M8 17c0-4 8-4 8 0\"/>",
+  "book": "<path d=\"M12 5v15M3 4c3-1 6-1 9 1 3-2 6-2 9-1v15c-3-1-6-1-9 1-3-2-6-2-9-1Z\"/>",
+  "award": "<circle cx=\"12\" cy=\"9\" r=\"6\"/><path d=\"m8 14-1 7 5-3 5 3-1-7M10 9l1.4 1.4L14 8\"/>",
+  "xp": "<path d=\"m13 2-9 12h7l-1 8 10-13h-8Z\"/>",
+  "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M7 3v4M17 3v4M3 11h18m-13 5 2 2 4-4\"/>",
+  "assessment": "<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"/><rect x=\"9\" y=\"2\" width=\"6\" height=\"4\" rx=\"1\"/><path d=\"m8 13 3 3 5-6\"/>",
+  "target": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/>",
+  "growth": "<path d=\"M4 20h16M6 16v-4m6 4V8m6 8V4M4 9l6-5 4 2 6-4\"/>",
+  "buddy": "<circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v2\"/>"
+};
+function renderBadgeIcon(name) {
+    const paths = BADGE_ICON_PATHS[name];
+    return paths ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>' : '';
+}
+
 const BADGE_DEFINITIONS = [
 
     {
         id:"account-created",
-        icon:"👋",
+        icon:"account",
         name:"Welcome to Streetwise",
         description:"Create your Streetwise account.",
         check:()=>true
@@ -394,7 +300,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"first-lesson",
-        icon:"🌱",
+        icon:"book",
         name:"First Steps",
         description:"Complete your first lesson.",
         check:p=>p.lessonsCompleted >= 1
@@ -402,7 +308,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"five-lessons",
-        icon:"📚",
+        icon:"book",
         name:"Getting Started",
         description:"Complete 5 lessons.",
         check:p=>p.lessonsCompleted >= 5
@@ -410,7 +316,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"ten-lessons",
-        icon:"🎓",
+        icon:"book",
         name:"Dedicated Learner",
         description:"Complete 10 lessons.",
         check:p=>p.lessonsCompleted >= 10
@@ -418,7 +324,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"twenty-five-lessons",
-        icon:"📖",
+        icon:"book",
         name:"Knowledge Builder",
         description:"Complete 25 lessons.",
         check:p=>p.lessonsCompleted >= 25
@@ -426,7 +332,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"fifty-lessons",
-        icon:"🏆",
+        icon:"award",
         name:"IT Regular",
         description:"Complete 50 lessons.",
         check:p=>p.lessonsCompleted >= 50
@@ -434,7 +340,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"hundred-xp",
-        icon:"⭐",
+        icon:"xp",
         name:"100 XP",
         description:"Earn 100 XP.",
         check:p=>p.xp >= 100
@@ -442,7 +348,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"five-hundred-xp",
-        icon:"💫",
+        icon:"xp",
         name:"500 XP",
         description:"Earn 500 XP.",
         check:p=>p.xp >= 500
@@ -450,7 +356,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"thousand-xp",
-        icon:"💎",
+        icon:"xp",
         name:"1,000 XP",
         description:"Earn 1,000 XP.",
         check:p=>p.xp >= 1000
@@ -458,7 +364,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"three-day-streak",
-        icon:"🔥",
+        icon:"calendar",
         name:"Three-Day Streak",
         description:"Learn for 3 days in a row.",
         check:p=>p.streak.current >= 3
@@ -466,7 +372,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"seven-day-streak",
-        icon:"🔥",
+        icon:"calendar",
         name:"Week Strong",
         description:"Learn for 7 days in a row.",
         check:p=>p.streak.current >= 7
@@ -474,7 +380,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"fourteen-day-streak",
-        icon:"⚡",
+        icon:"calendar",
         name:"Two Weeks Strong",
         description:"Maintain a 14-day learning streak.",
         check:p=>p.streak.current >= 14
@@ -482,7 +388,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"thirty-day-streak",
-        icon:"🏅",
+        icon:"calendar",
         name:"Monthly Momentum",
         description:"Maintain a 30-day learning streak.",
         check:p=>p.streak.current >= 30
@@ -490,7 +396,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"ten-day-streak",
-        icon:"🔥",
+        icon:"calendar",
         name:"Streak Builder",
         description:"Reach a 10-day learning streak.",
         check:p=>p.streak.longest >= 10
@@ -498,7 +404,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"quiz-ace",
-        icon:"🧠",
+        icon:"assessment",
         name:"Quiz Ace",
         description:"Complete 5 quizzes.",
         check:p=>(p.quizCount || 0) >= 5
@@ -506,7 +412,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"perfect-quiz",
-        icon:"🎯",
+        icon:"target",
         name:"Perfect Score",
         description:"Get every question correct on a quiz.",
         check:p=>(p.perfectQuizzes || 0) >= 1
@@ -514,7 +420,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"five-perfect-quizzes",
-        icon:"🧠",
+        icon:"target",
         name:"Quiz Master",
         description:"Get a perfect score on 5 quizzes.",
         check:p=>(p.perfectQuizzes || 0) >= 5
@@ -522,7 +428,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"first-test",
-        icon:"📝",
+        icon:"assessment",
         name:"Test Ready",
         description:"Complete your first test.",
         check:p=>(p.testCount || 0) >= 1
@@ -530,7 +436,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"five-tests",
-        icon:"📋",
+        icon:"assessment",
         name:"Assessment Pro",
         description:"Complete 5 tests.",
         check:p=>(p.testCount || 0) >= 5
@@ -538,7 +444,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"daily-goals-five",
-        icon:"☀️",
+        icon:"calendar",
         name:"Daily Learner",
         description:"Complete your 30 XP goal 5 times.",
         check:p=>(p.dailyGoalsCompleted || 0) >= 5
@@ -546,7 +452,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"level-five",
-        icon:"🚀",
+        icon:"growth",
         name:"Level 5",
         description:"Reach Streetwise Level 5.",
         check:p=>getUserLevel(p.xp) >= 5
@@ -554,7 +460,7 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"level-ten",
-        icon:"🌟",
+        icon:"growth",
         name:"Level 10",
         description:"Reach Streetwise Level 10.",
         check:p=>getUserLevel(p.xp) >= 10
@@ -562,18 +468,18 @@ const BADGE_DEFINITIONS = [
 
     {
         id:"buddy-teen",
-        icon:"🐣",
+        icon:"buddy",
         name:"Growing Together",
         description:"Help your buddy reach the Teen stage.",
-        check:p=>p.xp >= 300
+        check:p=>p.xp >= window.StreetwiseBuddies.thresholds.teen
     },
 
     {
         id:"buddy-adult",
-        icon:"🏆",
+        icon:"buddy",
         name:"Fully Grown",
         description:"Help your buddy reach the Adult stage.",
-        check:p=>p.xp >= 750
+        check:p=>p.xp >= window.StreetwiseBuddies.thresholds.adult
     }
 
 ];
@@ -1123,9 +1029,7 @@ function completeLesson(
 
                 showAchievement(
                     "Your buddy evolved",
-                    buddy.emoji[
-                        newStage
-                    ],
+                    "buddy:" + (progress.buddy || "fox") + ":" + newStage,
                     buddy.name +
                     " is now " +
                     getBuddyStageName(
@@ -1357,10 +1261,8 @@ function renderBadges(
             icon.className =
                 "badge-icon";
 
-            icon.textContent =
-                earned
-                    ? badge.icon
-                    : "🔒";
+            icon.innerHTML = renderBadgeIcon(badge.icon);
+            icon.setAttribute("aria-hidden", "true");
 
             const title =
                 document.createElement(
@@ -1382,23 +1284,10 @@ function renderBadges(
             card.appendChild(title);
             card.appendChild(description);
 
-            if(earned){
-
-                const earnedText =
-                    document.createElement(
-                        "span"
-                    );
-
-                earnedText.className =
-                    "badge-earned";
-
-                earnedText.textContent =
-                    "EARNED";
-
-                card.appendChild(
-                    earnedText
-                );
-            }
+            const status = document.createElement("span");
+            status.className = "badge-status" + (earned ? " badge-earned" : "");
+            status.textContent = earned ? "Earned" : "Not earned";
+            card.appendChild(status);
 
             grid.appendChild(card);
 
@@ -1464,80 +1353,44 @@ function closeBadgesOnBackdrop(
 
 /* BUDDIES */
 
-function renderBuddy(
-    progress
-){
+function renderBuddy(progress){
+    const id = Object.hasOwn(BUDDIES, progress.buddy) ? progress.buddy : 'fox';
+    const stage = getBuddyStage(progress.xp);
+    const info = getBuddyProgress(progress.xp);
+    const display = document.getElementById('buddyDisplay');
+    display.innerHTML = window.StreetwiseBuddies.avatar(id, stage);
+    display.setAttribute('role', 'img');
+    display.setAttribute('aria-label', getBuddyStageName(stage) + ' ' + BUDDIES[id].name);
+    document.getElementById('buddyName').textContent = BUDDIES[id].name;
+    document.getElementById('buddyStage').textContent = getBuddyStageName(stage);
+    const track = document.getElementById('buddyProgressTrack');
+    const percent = Math.min(100, info.current / info.needed * 100);
+    document.getElementById('buddyProgressFill').style.width = percent + '%';
+    track.setAttribute('aria-valuenow', Math.round(percent));
+    track.setAttribute('aria-valuetext', stage === 'adult' ? 'Fully grown' : info.remaining + ' XP to ' + info.nextStage);
+    document.getElementById('buddyProgressText').textContent = stage === 'adult' ? 'Fully grown. Keep learning together.' : info.remaining + ' XP to ' + info.nextStage;
+    document.getElementById('buddyGrowthPath').innerHTML = ['baby', 'teen', 'adult'].map((s, i) => {
+        const reached = ['baby', 'teen', 'adult'].indexOf(stage) >= i;
+        const label = i === 0 ? 'Baby' : i === 1 ? 'Teen' : 'Adult';
+        const xp = i === 0 ? 0 : i === 1 ? window.StreetwiseBuddies.thresholds.teen : window.StreetwiseBuddies.thresholds.adult;
+        return '<li class="' + (reached ? 'reached' : '') + '"' + (s === stage ? ' aria-current="step"' : '') + '><span>' + label + '</span><small>' + xp + ' XP</small></li>';
+    }).join('');
+}
 
-    const buddy =
-        BUDDIES[
-            progress.buddy
-        ] || BUDDIES.fox;
-
-    const stage =
-        getBuddyStage(
-            progress.xp
-        );
-
-    const info =
-        getBuddyProgress(
-            progress.xp
-        );
-
-    document.getElementById(
-        "buddyDisplay"
-    ).textContent =
-        buddy.emoji[
-            stage
-        ];
-
-    document.getElementById(
-        "buddyName"
-    ).textContent =
-        buddy.name;
-
-    document.getElementById(
-        "buddyStage"
-    ).textContent =
-        getBuddyStageName(
-            stage
-        );
-
-    const fill =
-        document.getElementById(
-            "buddyProgressFill"
-        );
-
-    if(
-        stage === "adult"
-    ){
-
-        fill.style.width =
-            "100%";
-
-        document.getElementById(
-            "buddyProgressText"
-        ).textContent =
-            "Fully grown";
-
-    }else{
-
-        fill.style.width =
-            (
-                info.current /
-                info.needed *
-                100
-            ) +
-            "%";
-
-        document.getElementById(
-            "buddyProgressText"
-        ).textContent =
-            info.current +
-            " / " +
-            info.needed +
-            " XP toward " +
-            info.nextStage;
+function continueBuddyLearning(){
+    const user = getCurrentUser();
+    if(!user) return;
+    const progress = getUserProgress(user.email);
+    const saved = progress.learningState && progress.learningState.current;
+    const ids = Object.keys(STREETWISE_COURSES);
+    const preferred = ids.filter(id => STREETWISE_COURSES[id].level === user.level);
+    const ordered = [...new Set([saved && saved.courseId, ...preferred, ...ids])].filter(id => STREETWISE_COURSES[id]);
+    for(const id of ordered){
+        const course = STREETWISE_COURSES[id];
+        const next = course.lessons.find(lesson => !progress.completedLessons[lesson.id]);
+        if(next){ openCourse(id, next.id); return; }
     }
+    openPractice('home');
 }
 
 function renderBuddyOptions(){
@@ -1596,8 +1449,9 @@ function renderBuddyOptions(){
             emoji.className =
                 "buddy-option-emoji";
 
-            emoji.textContent =
-                buddy.emoji.baby;
+            emoji.innerHTML = window.StreetwiseBuddies.avatar(id, getBuddyStage(progress.xp));
+            emoji.setAttribute("aria-hidden", "true");
+            button.setAttribute("aria-pressed", String(progress.buddy === id));
 
             const name =
                 document.createElement(
@@ -1633,9 +1487,11 @@ function renderBuddyOptions(){
                 description
             );
 
-            container.appendChild(
-                button
-            );
+            const state = document.createElement('span');
+            state.className = 'buddy-option-state';
+            state.textContent = progress.buddy === id ? 'Selected' : 'Choose buddy';
+            button.appendChild(state);
+            container.appendChild(button);
 
         }
     );
@@ -1782,7 +1638,7 @@ function ensureAccountBadge(){
 
                 showAchievement(
                     "Badge earned",
-                    "👋",
+                    "account",
                     "Welcome to Streetwise",
                     "You created your Streetwise account."
                 );
@@ -2820,7 +2676,12 @@ let achievementHideTimer=null;
 function showAchievement(label,icon,title,description){
  const banner=document.getElementById('achievementBanner');
  document.getElementById('achievementSmall').textContent=label;
- document.getElementById('achievementIcon').textContent=icon;
+ const artwork=document.getElementById('achievementIcon');
+ if(BADGE_ICON_PATHS[icon]) artwork.innerHTML=renderBadgeIcon(icon);
+ else if(typeof icon === 'string' && icon.startsWith('buddy:')) {
+  const [,id,stage]=icon.split(':');
+  artwork.innerHTML=window.StreetwiseBuddies.avatar(id,stage);
+ } else artwork.textContent=icon;
  document.getElementById('achievementTitle').textContent=title;
  document.getElementById('achievementDescription').textContent=description;
  banner.setAttribute('role','status');

@@ -76,7 +76,7 @@ function FlowCanvas({ theme }: { theme: AppTheme }) {
   }, []);
 
   return (
-    <div style={{ height: '100%', width: '100%', position: 'relative', backgroundColor: theme.canvasBg }} ref={reactFlowWrapper}>
+    <div className="lab-flow" style={{ height: '100%', width: '100%', position: 'relative', backgroundColor: theme.canvasBg, '--flow-panel': theme.panel, '--flow-border': theme.border, '--flow-text': theme.text, '--flow-hover': theme.panel2 } as React.CSSProperties} ref={reactFlowWrapper}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

@@ -1,5 +1,8 @@
 .readingPane {
-  width: 450px;
+  width: clamp(280px, 34vw, 450px);
+  flex-shrink: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -32,7 +35,7 @@
   background: var(--back-btn-hover-bg) !important;
   color: var(--back-btn-hover-color) !important;
   border-color: var(--back-btn-hover-border) !important;
-  transform: translateX(-4px);
+  transform: translateX(-2px);
   box-shadow: 0 4px 12px var(--back-btn-glow);
 }
 
@@ -46,3 +49,7 @@
   border-color: var(--terminal-box-hover-border) !important;
 }
 
+
+@media (max-width: 900px) {
+  .readingPane { width: 100%; overflow-y: visible; border-right: 0 !important; }
+}

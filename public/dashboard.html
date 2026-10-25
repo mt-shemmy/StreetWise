@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Streetwise - Dashboard</title>
 
-<link rel="stylesheet" href="css/globals.css">
-<link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/globals.css">
 </head>
 
 
@@ -421,14 +421,13 @@
                 </h3>
 
                 <p class="buddy-subtitle">
-                    Keep learning to help them grow.
+                    Your progress helps them grow.
                 </p>
 
                 <div
                     class="buddy-display"
                     id="buddyDisplay"
                 >
-                    🦊
                 </div>
 
                 <h3
@@ -445,7 +444,9 @@
                     Baby
                 </p>
 
-                <div class="buddy-progress-track">
+                <ol class="buddy-growth-path" id="buddyGrowthPath" aria-label="Buddy growth stages"></ol>
+
+                <div class="buddy-progress-track" id="buddyProgressTrack" role="progressbar" aria-label="Progress to next buddy stage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 
                     <div
                         class="buddy-progress-fill"
@@ -458,8 +459,10 @@
                     class="buddy-progress-text"
                     id="buddyProgressText"
                 >
-                    0 / 300 XP toward Teen
+                    100 XP to Teen
                 </p>
+
+                <button type="button" class="buddy-learn-button" onclick="continueBuddyLearning()">Continue learning <span aria-hidden="true">&rarr;</span></button>
 
                 <button
                     class="choose-buddy-button"
@@ -507,18 +510,20 @@
     onclick="closeBadgesOnBackdrop(event)"
 >
 
-    <div class="badges-modal">
+    <div class="badges-modal" role="dialog" aria-modal="true" aria-labelledby="badgesTitle">
 
         <button
             class="badges-close"
             onclick="closeBadges()"
+            aria-label="Close badges"
         >
             ×
         </button>
 
         <div class="badges-modal-header">
+            <span class="badges-eyebrow">Learning milestones</span>
 
-            <h2>
+            <h2 id="badgesTitle">
                 Your badges
             </h2>
 
@@ -553,20 +558,21 @@
     onclick="closeBuddySelectionOnBackdrop(event)"
 >
 
-    <div class="buddy-selection-box">
+    <div class="buddy-selection-box" role="dialog" aria-modal="true" aria-labelledby="buddySelectionTitle">
 
         <div class="buddy-selection-header">
 
-            <h2>
+            <h2 id="buddySelectionTitle">
                 Choose your buddy
             </h2>
 
             <p>
-                Your buddy grows as you earn XP.
-                You can switch buddies anytime.
+                Every buddy grows with your learning progress. Switch anytime without losing XP.
             </p>
 
         </div>
+
+        <p class="buddy-growth-note">Automatic upgrades: <strong>Teen at 100 XP</strong><span aria-hidden="true"> &middot; </span><strong>Adult at 300 XP</strong></p>
 
         <div
             class="buddy-options"
@@ -631,7 +637,7 @@
                         <div class="creator-icon">
 
                             <img
-                                src="prajwal.png"
+                                src="Prajwal.png"
                                 alt="PS"
                             >
 
@@ -730,24 +736,24 @@
     onclick="closePreferencesOnBackdrop(event)"
 >
 
-    <div class="credits-box">
+    <div class="credits-box preferences-panel" role="dialog" aria-modal="true" aria-labelledby="preferencesTitle">
 
         <button
             class="credits-close"
             onclick="closePreferences()"
+            aria-label="Close preferences"
         >
             ×
         </button>
 
         <div class="credits-header">
 
-            <h2>
+            <h2 id="preferencesTitle">
                 Preferences
             </h2>
 
             <p>
-                Manage your account, appearance, and learning
-                experience.
+                Personalize your profile and learning experience.
             </p>
 
         </div>
@@ -776,9 +782,9 @@
 
             <div class="prefs-section">
 
-                <h3 class="prefs-section-title">
+                <label class="prefs-section-title" for="prefsNicknameInput">
                     Nickname
-                </h3>
+                </label>
 
                 <p class="prefs-section-desc">
                     This is shown in the navigation bar and can be
@@ -838,6 +844,7 @@
                         <input
                             type="checkbox"
                             id="darkModeToggle"
+                            aria-label="Dark mode"
                             onchange="
                                 handleDarkModeToggle(
                                     this
@@ -865,82 +872,87 @@
                     emphasize.
                 </p>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic1"
-                        class="topic-checkbox"
-                        value="Networking"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic1">Networking</label>
-                </div>
+                <div class="prefs-topics" role="group" aria-label="Learning topics">
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic1"
+                            class="topic-checkbox"
+                            value="Networking"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic1">Networking</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic2"
-                        class="topic-checkbox"
-                        value="Security"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic2">Security</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic2"
+                            class="topic-checkbox"
+                            value="Security"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic2">Security</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic3"
-                        class="topic-checkbox"
-                        value="Hardware & Devices"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic3">Hardware & Devices</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic3"
+                            class="topic-checkbox"
+                            value="Hardware & Devices"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic3">Hardware & Devices</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic4"
-                        class="topic-checkbox"
-                        value="Operating Systems"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic4">Operating Systems</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic4"
+                            class="topic-checkbox"
+                            value="Operating Systems"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic4">Operating Systems</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic5"
-                        class="topic-checkbox"
-                        value="Cloud Computing"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic5">Cloud Computing</label>
-                </div>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic5"
+                            class="topic-checkbox"
+                            value="Cloud Computing"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic5">Cloud Computing</label>
+                    </div>
 
-                <div class="topic-row">
-                    <input
-                        type="checkbox"
-                        id="topic6"
-                        class="topic-checkbox"
-                        value="Programming Basics"
-                        onchange="handleLearningTopicToggle(this)"
-                    >
-                    <label for="topic6">Programming Basics</label>
+                    <div class="topic-row">
+                        <input
+                            type="checkbox"
+                            id="topic6"
+                            class="topic-checkbox"
+                            value="Programming Basics"
+                            onchange="handleLearningTopicToggle(this)"
+                        >
+                        <label for="topic6">Programming Basics</label>
+                    </div>
                 </div>
 
             </div>
 
 
-            <button
-                type="button"
-                class="prefs-logout-button"
-                onclick="logoutUser()"
-            >
-                Log out
-            </button>
+            <div class="prefs-footer">
+                <p>Theme and topic changes save automatically.</p>
+                <button
+                    type="button"
+                    class="prefs-logout-button"
+                    onclick="logoutUser()"
+                >
+                    Log out
+                </button>
+            </div>
 
         </div>
 
@@ -966,6 +978,7 @@
 <script src="scripts/data.js"></script>
 <script src="scripts/theme.js"></script>
 <script src="scripts/auth.js"></script>
+<script src="scripts/buddies.js"></script>
 <script src="scripts/dashboard-ui.js"></script>
 
 </body>
