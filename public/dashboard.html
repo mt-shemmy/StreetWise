@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streetwise - Dashboard</title>
+
+<link rel="stylesheet" href="css/globals.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+
+<body>
+
+
+<!-- NAV -->
+
+<nav class="navbar">
+
+    <div
+        class="logo"
+        onclick="handleLogoClick()"
+    >
+        Streetwise
+    </div>
+
+    <div class="nav-buttons">
+
+        <button
+            class="credits-button"
+            onclick="toggleCredits()"
+        >
+            Credits
+        </button>
+
+        <button
+            class="nickname-button"
+            onclick="openPreferences()"
+        >
+            <span id="nicknameLabel">Nickname</span>
+            <span class="nickname-caret">▾</span>
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ACHIEVEMENT -->
+
+<div
+    class="achievement-banner"
+    id="achievementBanner"
+>
+
+    <div
+        class="achievement-icon"
+        id="achievementIcon"
+    >
+        ★
+    </div>
+
+    <div>
+
+        <p
+            class="achievement-small"
+            id="achievementSmall"
+        >
+            Achievement unlocked
+        </p>
+
+        <h3
+            class="achievement-title"
+            id="achievementTitle"
+        >
+            Achievement earned
+        </h3>
+
+        <p
+            class="achievement-description"
+            id="achievementDescription"
+        >
+            You unlocked a new achievement.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<main class="dashboard-main">
+
+    <div class="dashboard-layout">
+
+
+        <!-- LEFT SIDE -->
+
+        <aside class="dashboard-left">
+
+
+            <div class="stat-chip">
+
+                <div class="stat-chip-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+
+                        <path d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c0-1-1-3-1-3 1 1 3 3 3 6a5 5 0 0 1-10 0c0-5 3-6 5-11z"/>
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p
+                        class="stat-chip-value"
+                        id="statStreakValue"
+                    >
+                        0 days
+                    </p>
+
+                    <p class="stat-chip-label">
+                        Streak
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-chip">
+
+                <div class="stat-chip-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        />
+
+                        <path
+                            d="M8.5 12.5l2.3 2.3 4.7-5"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p
+                        class="stat-chip-value"
+                        id="statLessonsValue"
+                    >
+                        0
+                    </p>
+
+                    <p class="stat-chip-label">
+                        Lessons
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="stat-chip stat-chip-clickable"
+                onclick="openBadges()"
+                role="button"
+                tabindex="0"
+                onkeydown="
+                    if(event.key==='Enter'||event.key===' ')
+                    openBadges()
+                "
+            >
+
+                <div class="stat-chip-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+
+                        <circle
+                            cx="12"
+                            cy="9"
+                            r="5.5"
+                        />
+
+                        <path
+                            d="M9 13.5L7.5 21l4.5-2.4 4.5 2.4-1.5-7.5"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p
+                        class="stat-chip-value"
+                        id="statBadgesValue"
+                    >
+                        0
+                    </p>
+
+                    <p class="stat-chip-label">
+                        Badges
+                    </p>
+
+                </div>
+
+            </div>
+
+            <section class="workshop-entry" id="practiceEntry" aria-label="Practice workshop"></section>
+
+        </aside>
+
+
+        <!-- CENTER -->
+
+        <div class="dashboard-content">
+
+
+            <!-- WELCOME IS NOW IN CENTER -->
+
+            <div class="dashboard-header">
+
+                <div class="dashboard-greeting">
+
+                    <h1 id="greetingText">
+                        Welcome back!
+                    </h1>
+
+                    <p>
+                        Pick up where you left off, earn XP,
+                        and build your IT skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTINUE -->
+
+            <div class="continue-section">
+
+                <h2 class="section-title">
+                    Continue learning
+                </h2>
+
+                <div
+                    class="empty-state"
+                    id="continueLearningState"
+                >
+
+                    <strong>
+                        You haven't started a lesson yet
+                    </strong>
+
+                    Pick a topic below to begin your first lesson.
+
+                </div>
+
+            </div>
+
+
+            <!-- TOPICS -->
+
+            <div>
+
+                <div class="browse-header">
+
+                    <div
+                        class="level-tabs"
+                        id="levelTabs"
+                    >
+
+                        <button
+                            class="level-tab"
+                            data-level="Beginner"
+                            onclick="
+                                selectLevelTab(
+                                    'Beginner',
+                                    this
+                                )
+                            "
+                        >
+                            Beginner
+                        </button>
+
+                        <button
+                            class="level-tab"
+                            data-level="Intermediate"
+                            onclick="
+                                selectLevelTab(
+                                    'Intermediate',
+                                    this
+                                )
+                            "
+                        >
+                            Intermediate
+                        </button>
+
+                        <button
+                            class="level-tab"
+                            data-level="Advanced"
+                            onclick="
+                                selectLevelTab(
+                                    'Advanced',
+                                    this
+                                )
+                            "
+                        >
+                            Advanced
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-box">
+
+                        <input
+                            type="text"
+                            id="courseSearchInput"
+                            placeholder="Search topics..."
+                            oninput="
+                                handleSearchInput(
+                                    this.value
+                                )
+                            "
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="course-grid"
+                    id="courseGrid"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <aside class="dashboard-right">
+
+
+            <!-- XP -->
+
+            <div class="xp-panel">
+
+                <div class="xp-panel-top">
+
+                    <p class="xp-panel-label">
+                        Streetwise Level
+                    </p>
+
+                    <p
+                        class="level-number"
+                        id="levelNumber"
+                    >
+                        1
+                    </p>
+
+                </div>
+
+                <p
+                    class="xp-number"
+                    id="xpNumber"
+                >
+                    0 XP
+                </p>
+
+                <div class="xp-track">
+
+                    <div
+                        class="xp-fill"
+                        id="xpFill"
+                    ></div>
+
+                </div>
+
+                <p
+                    class="xp-next"
+                    id="xpNext"
+                >
+                    100 XP to Level 2
+                </p>
+
+            </div>
+
+
+            <!-- BUDDY -->
+
+            <div class="buddy-card">
+
+                <h3 class="buddy-title">
+                    Your Buddy
+                </h3>
+
+                <p class="buddy-subtitle">
+                    Keep learning to help them grow.
+                </p>
+
+                <div
+                    class="buddy-display"
+                    id="buddyDisplay"
+                >
+                    🦊
+                </div>
+
+                <h3
+                    class="buddy-name"
+                    id="buddyName"
+                >
+                    Fox
+                </h3>
+
+                <p
+                    class="buddy-stage"
+                    id="buddyStage"
+                >
+                    Baby
+                </p>
+
+                <div class="buddy-progress-track">
+
+                    <div
+                        class="buddy-progress-fill"
+                        id="buddyProgressFill"
+                    ></div>
+
+                </div>
+
+                <p
+                    class="buddy-progress-text"
+                    id="buddyProgressText"
+                >
+                    0 / 300 XP toward Teen
+                </p>
+
+                <button
+                    class="choose-buddy-button"
+                    onclick="openBuddySelection()"
+                >
+                    Change buddy
+                </button>
+
+            </div>
+
+
+            <!-- DAILY GOAL -->
+
+            <div class="daily-goal">
+
+                <h3>
+                    Daily goal
+                </h3>
+
+                <p>
+                    Earn 30 XP today
+                </p>
+
+                <p
+                    class="daily-goal-number"
+                    id="dailyGoalText"
+                >
+                    0 / 30 XP
+                </p>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+<!-- BADGES -->
+
+<div
+    class="badges-overlay"
+    id="badgesOverlay"
+    onclick="closeBadgesOnBackdrop(event)"
+>
+
+    <div class="badges-modal">
+
+        <button
+            class="badges-close"
+            onclick="closeBadges()"
+        >
+            ×
+        </button>
+
+        <div class="badges-modal-header">
+
+            <h2>
+                Your badges
+            </h2>
+
+            <p>
+                Keep learning to unlock new achievements.
+            </p>
+
+            <div
+                class="badges-modal-count"
+                id="badgesModalCount"
+            >
+                0 / 25 earned
+            </div>
+
+        </div>
+
+        <div
+            class="badges-grid"
+            id="badgesGrid"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- BUDDY SELECTION -->
+
+<div
+    class="buddy-overlay"
+    id="buddyOverlay"
+    onclick="closeBuddySelectionOnBackdrop(event)"
+>
+
+    <div class="buddy-selection-box">
+
+        <div class="buddy-selection-header">
+
+            <h2>
+                Choose your buddy
+            </h2>
+
+            <p>
+                Your buddy grows as you earn XP.
+                You can switch buddies anytime.
+            </p>
+
+        </div>
+
+        <div
+            class="buddy-options"
+            id="buddyOptions"
+        ></div>
+
+        <button
+            class="close-selection"
+            onclick="closeBuddySelection()"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CREDITS -->
+
+<div
+    class="credits-overlay"
+    id="creditsOverlay"
+    onclick="closeCredits(event)"
+>
+
+    <div class="credits-box">
+
+        <button
+            class="credits-close"
+            onclick="toggleCredits()"
+        >
+            ×
+        </button>
+
+        <div class="credits-header">
+
+            <h2>
+                Streetwise
+            </h2>
+
+            <p>
+                Hands-on Information Technology Learning Platform
+                to develop technical skills through interactive
+                labs and case studies.
+            </p>
+
+        </div>
+
+        <div class="credits-content">
+
+            <h3 class="credits-section-title">
+                Created by
+            </h3>
+
+            <div class="creator-grid">
+
+                <div class="creator-card">
+
+                    <div class="creator-top">
+
+                        <div class="creator-icon">
+
+                            <img
+                                src="prajwal.png"
+                                alt="PS"
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="creator-name">
+                                Prajwal Shrestha
+                            </h3>
+
+                            <p class="creator-role">
+                                Design & Development
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p class="creator-description">
+                        Responsible for the development, design,
+                        structure, and functionality of Streetwise. CCST Networking Certified
+                    </p>
+
+                </div>
+
+
+                <div class="creator-card">
+
+                    <div class="creator-top">
+
+                        <div class="creator-icon">
+
+                            <img
+                                src="shemmy.png"
+                                alt="ST"
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="creator-name">
+                                Shemmy Taiwo
+                            </h3>
+
+                            <p class="creator-role">
+                                Design & Development
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p class="creator-description">
+                        Responsible for the development and creation
+                        of the Streetwise learning experience. CCST Networking Certified
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info">
+
+                <h3>
+                    About Streetwise
+                </h3>
+
+                <p>
+                    Streetwise was created to make IT education
+                    more engaging and practical. Instead of only
+                    reading about technology, students can learn by
+                    working through exercises, simulations, and
+                    realistic IT challenges. The website was created
+                    as part of the Congressional App Challenge, a
+                    nationwide competition for students to create
+                    apps and websites.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PREFERENCES -->
+
+<div
+    class="credits-overlay"
+    id="preferencesOverlay"
+    onclick="closePreferencesOnBackdrop(event)"
+>
+
+    <div class="credits-box">
+
+        <button
+            class="credits-close"
+            onclick="closePreferences()"
+        >
+            ×
+        </button>
+
+        <div class="credits-header">
+
+            <h2>
+                Preferences
+            </h2>
+
+            <p>
+                Manage your account, appearance, and learning
+                experience.
+            </p>
+
+        </div>
+
+        <div class="credits-content">
+
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Account
+                </h3>
+
+                <div class="prefs-info-row">
+                    <span>Email</span>
+                    <span id="prefsEmail"> - </span>
+                </div>
+
+                <div class="prefs-info-row">
+                    <span>IT level</span>
+                    <span id="prefsLevel"> - </span>
+                </div>
+
+            </div>
+
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Nickname
+                </h3>
+
+                <p class="prefs-section-desc">
+                    This is shown in the navigation bar and can be
+                    changed anytime.
+                </p>
+
+                <div class="prefs-nickname-row">
+
+                    <input
+                        type="text"
+                        id="prefsNicknameInput"
+                        maxlength="20"
+                        placeholder="Enter a nickname"
+                    >
+
+                    <button
+                        type="button"
+                        class="prefs-save-button"
+                        onclick="savePrefsNickname()"
+                    >
+                        Save
+                    </button>
+
+                </div>
+
+                <p
+                    id="prefsNicknameMessage"
+                    class="message-box"
+                ></p>
+
+            </div>
+
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Appearance
+                </h3>
+
+                <div class="toggle-row">
+
+                    <div class="toggle-label">
+
+                        <h4>
+                            Dark mode
+                        </h4>
+
+                        <p>
+                            Switch Streetwise to a darker color
+                            palette.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle-switch">
+
+                        <input
+                            type="checkbox"
+                            id="darkModeToggle"
+                            onchange="
+                                handleDarkModeToggle(
+                                    this
+                                )
+                            "
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Learning preferences
+                </h3>
+
+                <p class="prefs-section-desc">
+                    Choose the topics you'd like Streetwise to
+                    emphasize.
+                </p>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic1"
+                        class="topic-checkbox"
+                        value="Networking"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic1">Networking</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic2"
+                        class="topic-checkbox"
+                        value="Security"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic2">Security</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic3"
+                        class="topic-checkbox"
+                        value="Hardware & Devices"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic3">Hardware & Devices</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic4"
+                        class="topic-checkbox"
+                        value="Operating Systems"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic4">Operating Systems</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic5"
+                        class="topic-checkbox"
+                        value="Cloud Computing"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic5">Cloud Computing</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic6"
+                        class="topic-checkbox"
+                        value="Programming Basics"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic6">Programming Basics</label>
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="prefs-logout-button"
+                onclick="logoutUser()"
+            >
+                Log out
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    <span id="toastText"></span>
+</div>
+
+
+<main id="lessonWorkspace" aria-labelledby="lessonCourseTitle" hidden><div id="lessonPlayer"></div></main>
+<main id="practiceWorkspace" aria-labelledby="practiceTitle" hidden><div id="practicePlayer"></div></main>
+<dialog id="glossaryDialog" aria-labelledby="glossaryDialogTitle"></dialog>
+
+<script src="scripts/data.js"></script>
+<script src="scripts/theme.js"></script>
+<script src="scripts/auth.js"></script>
+<script src="scripts/dashboard-ui.js"></script>
+
+</body>
+</html>

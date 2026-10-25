@@ -1,0 +1,48 @@
+.readingPane {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 5px 0 25px rgba(0, 0, 0, 0.05);
+}
+
+.readingPane::-webkit-scrollbar {
+  width: 8px;
+}
+
+.readingPane::-webkit-scrollbar-track {
+  background: var(--reading-track);
+}
+
+.readingPane::-webkit-scrollbar-thumb {
+  background: var(--reading-thumb);
+  border-radius: 8px;
+}
+
+.readingPane::-webkit-scrollbar-thumb:hover {
+  background: var(--reading-thumb-hover);
+}
+
+.backBtn {
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background: var(--back-btn-hover-bg) !important;
+  color: var(--back-btn-hover-color) !important;
+  border-color: var(--back-btn-hover-border) !important;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 12px var(--back-btn-glow);
+}
+
+.terminalTaskBox {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.terminalTaskBox:hover {
+  box-shadow: 0 8px 30px var(--terminal-box-glow);
+  border-color: var(--terminal-box-hover-border) !important;
+}
+

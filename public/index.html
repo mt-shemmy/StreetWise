@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streetwise</title>
+
+<link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+<!-- Top Centered Logo -->
+<header class="top-header-logo">
+    <a href="index.html" class="logo-link" onclick="handleLogoClick(); return false;" title="Streetwise Home">
+        <img src="image_9a883b.jpg" alt="Streetwise Logo" class="header-logo-image" onerror="this.onerror=null; this.src='/image_9a883b.jpg';">
+    </a>
+</header>
+
+
+<!-- navigation -->
+
+<nav class="navbar">
+
+    <div class="logo" onclick="handleLogoClick()">
+        Streetwise
+    </div>
+
+    <div class="nav-buttons">
+
+        <button
+            class="credits-button"
+            onclick="toggleCredits()"
+        >
+            Credits
+        </button>
+
+        <button
+            class="login-button"
+            id="loginNavButton"
+            onclick="showPage('loginPage')"
+        >
+            Log in
+        </button>
+
+        <button
+            class="signup-button"
+            id="signupNavButton"
+            onclick="startSignup()"
+        >
+            Sign up
+        </button>
+
+        <button
+            class="nickname-button"
+            id="nicknameNavButton"
+            onclick="openPreferences()"
+            style="display: none;"
+        >
+            <span id="nicknameLabel">Nickname</span>
+            <span class="nickname-caret">▾</span>
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- home page -->
+
+<main id="homePage" class="page active">
+
+    <section class="hero">
+
+        <div class="intro">
+
+            <h1>
+                Turn your IT goals into
+                <span>real skills.</span>
+            </h1>
+
+            <p>
+                Streetwise educates technology using clear
+                explanations, interactive exercises, simulations,
+                and real-world IT challenges.
+            </p>
+
+            <p>
+                Begin with the fundamentals or plunge into practical
+                IT problems.
+            </p>
+
+        </div>
+
+
+        <div class="start">
+
+            <h2>
+                Get started as a...
+            </h2>
+
+
+            <button
+                class="level"
+                onclick="startSignupWithLevel('Beginner')"
+            >
+
+                <div>
+
+                    <h3>
+                        Beginner
+                    </h3>
+
+                    <p>
+                        I'm completely new to IT
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <button
+                class="level"
+                onclick="startSignupWithLevel('Intermediate')"
+            >
+
+                <div>
+
+                    <h3>
+                        Intermediate
+                    </h3>
+
+                    <p>
+                        I know some IT and want to learn more
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+
+            <button
+                class="level"
+                onclick="startSignupWithLevel('Advanced')"
+            >
+
+                <div>
+
+                    <h3>
+                        Advanced
+                    </h3>
+
+                    <p>
+                        I want to practice real IT skills
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats-section">
+
+        <div class="stat">
+
+            <h2>
+                Interactive
+            </h2>
+
+            <p>
+                Learn by doing
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                Hands-on
+            </h2>
+
+            <p>
+                Practice real skills
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                Practical
+            </h2>
+
+            <p>
+                Built around real problems
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                Beginner friendly
+            </h2>
+
+            <p>
+                Start with no experience
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="product-section">
+
+        <div class="features">
+
+            <div class="feature">
+
+                <h3>
+                    Interactive lessons
+                </h3>
+
+                <p>
+                    Learn through short explanations, examples,
+                    and hands-on activities instead of long
+                    technical readings.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    Virtual IT labs
+                </h3>
+
+                <p>
+                    Practice networking, hardware, operating systems,
+                    and other IT concepts in a safe environment.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    Real problems
+                </h3>
+
+                <p>
+                    Solve realistic IT situations and learn how to
+                    troubleshoot problems.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- login page -->
+
+<main id="loginPage" class="page">
+
+    <section class="account-page">
+
+<!-- Showcase for Login Page -->
+        <div class="account-showcase">
+            <div>
+                <h2>Your IT sandbox<br>is ready.</h2>
+                <p>Deploy virtual networks, configure firewalls, and run command-line diagnostics directly in your browser.</p>
+            </div>
+            <div class="showcase-terminal" onclick="runTypingAnimation('term-login')">
+                <div class="terminal-header">
+                    <div class="terminal-dot" style="background: #f2897c;"></div>
+                    <div class="terminal-dot" style="background: #e0a530;"></div>
+                    <div class="terminal-dot" style="background: var(--msg-success-text);"></div>
+                </div>
+                <div class="terminal-body" id="term-login">
+                    <!-- JavaScript will type here -->
+                </div>
+            </div>
+        </div>
+        <div class="account-container">
+
+            <h1>
+                Log in to Streetwise
+            </h1>
+
+            <p class="account-subtitle">
+                Welcome back. Continue building your
+                IT skills with Streetwise.
+            </p>
+
+
+            <form
+                class="account-form"
+                onsubmit="handleLogin(event)"
+            >
+
+
+                <!-- google -->
+
+                <button
+                    type="button"
+                    class="google-button"
+                    onclick="loginWithGoogle()"
+                >
+                    <span class="google-icon">G</span>
+                    Continue with Google
+                </button>
+
+
+                <div class="divider">
+
+                    <div class="divider-line"></div>
+
+                    <span>
+                        OR
+                    </span>
+
+                    <div class="divider-line"></div>
+
+                </div>
+
+
+                <p
+                    id="loginMessage"
+                    class="message-box"
+                ></p>
+
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="forgot-password"
+                    onclick="forgotPassword(event)"
+                >
+                    Forgot password?
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="account-submit"
+                >
+                    Log in
+                </button>
+
+            </form>
+
+
+            <div class="account-switch">
+
+                Don't have an account?
+
+                <button
+                    onclick="startSignup()"
+                >
+                    Sign up
+                </button>
+
+            </div>
+
+
+            <button
+                class="back-home"
+                onclick="showPage('homePage')"
+            >
+                ← Back to Streetwise
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- sign up page -->
+
+<main id="signupPage" class="page">
+
+    <section class="account-page">
+        <!-- Showcase for Sign Up Page -->
+        <div class="account-showcase">
+            <div>
+                <h2>Master IT through<br>real practice.</h2>
+                <p>Don't just read about cybersecurity. Build, break, and secure live virtual systems.</p>
+            </div>
+            <div class="showcase-terminal" onclick="runTypingAnimation('term-signup')">
+                <div class="terminal-header">
+                    <div class="terminal-dot" style="background: #f2897c;"></div>
+                    <div class="terminal-dot" style="background: #e0a530;"></div>
+                    <div class="terminal-dot" style="background: var(--msg-success-text);"></div>
+                </div>
+                <div class="terminal-body" id="term-signup">
+                    <!-- JavaScript will type here -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="account-container">
+
+            <h1>
+                Create your account
+            </h1>
+
+            <p class="account-subtitle">
+                Let's personalize your Streetwise
+                learning experience.
+            </p>
+
+
+            <!-- progress -->
+
+            <div class="signup-progress">
+
+                <div
+                    id="progressDot1"
+                    class="progress-dot active"
+                ></div>
+
+                <div class="progress-line"></div>
+
+                <div
+                    id="progressDot2"
+                    class="progress-dot"
+                ></div>
+
+                <div class="progress-line"></div>
+
+                <div
+                    id="progressDot3"
+                    class="progress-dot"
+                ></div>
+
+            </div>
+
+
+            <div class="account-form">
+
+
+                <!-- step 1 -->
+
+                <div
+                    id="signupStep1"
+                    class="signup-step active"
+                >
+
+                    <h2 class="step-title">
+                        What's your IT experience?
+                    </h2>
+
+                    <p class="step-description">
+                        Choose the level that best describes you.
+                        You can change this later.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="signup-level"
+                        onclick="selectSignupLevel('Beginner', this)"
+                    >
+
+                        <div>
+
+                            <h3>
+                                Beginner
+                            </h3>
+
+                            <p>
+                                I'm completely new to IT
+                            </p>
+
+                        </div>
+
+                        <div class="level-check">
+                            ✓
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="signup-level"
+                        onclick="selectSignupLevel('Intermediate', this)"
+                    >
+
+                        <div>
+
+                            <h3>
+                                Intermediate
+                            </h3>
+
+                            <p>
+                                I know some IT and want to learn more
+                            </p>
+
+                        </div>
+
+                        <div class="level-check">
+                            ✓
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="signup-level"
+                        onclick="selectSignupLevel('Advanced', this)"
+                    >
+
+                        <div>
+
+                            <h3>
+                                Advanced
+                            </h3>
+
+                            <p>
+                                I want to practice real IT skills
+                            </p>
+
+                        </div>
+
+                        <div class="level-check">
+                            ✓
+                        </div>
+
+                    </button>
+
+
+                    <div class="step-buttons">
+
+                        <button
+                            type="button"
+                            class="step-back"
+                            onclick="showPage('homePage')"
+                        >
+                            Back
+                        </button>
+
+                        <button
+                            type="button"
+                            id="signupContinueButton"
+                            class="step-continue disabled"
+                            onclick="goToSignupStep2()"
+                            disabled
+                        >
+                            Continue
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- step 2 -->
+
+                <div
+                    id="signupStep2"
+                    class="signup-step"
+                >
+
+                    <h2 class="step-title">
+                        Create your account
+                    </h2>
+
+                    <p class="step-description">
+                        Choose how you'd like to create your
+                        Streetwise account.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="google-button"
+                        onclick="signupWithGoogle()"
+                    >
+                        <span class="google-icon">G</span>
+                        Continue with Google
+                    </button>
+
+
+                    <div class="divider">
+
+                        <div class="divider-line"></div>
+
+                        <span>
+                            OR
+                        </span>
+
+                        <div class="divider-line"></div>
+
+                    </div>
+
+
+                    <p
+                        id="signupMessage"
+                        class="message-box"
+                    ></p>
+
+
+                    <div class="form-group">
+
+                        <label for="signupEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="Enter your email"
+                            oninput="checkSignupEmailAvailability()"
+                            required
+                        >
+
+                        <p class="field-hint" id="signupEmailHint"></p>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Create a password"
+                            oninput="updatePasswordStrength()"
+                            required
+                        >
+
+                        <div class="password-strength" id="passwordStrengthMeter" style="display: none;">
+
+                            <div class="password-strength-track">
+                                <div class="password-strength-fill" id="passwordStrengthFill"></div>
+                            </div>
+
+                            <p class="password-strength-label" id="passwordStrengthLabel"></p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupPasswordConfirm">
+                            Confirm password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signupPasswordConfirm"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="step-buttons">
+
+                        <button
+                            type="button"
+                            class="step-back"
+                            onclick="goToSignupStep1()"
+                        >
+                            Back
+                        </button>
+
+                        <button
+                            type="button"
+                            class="step-continue"
+                            onclick="goToSignupStep3()"
+                        >
+                            Continue
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- step 3 -->
+
+                <div
+                    id="signupStep3"
+                    class="signup-step"
+                >
+
+                    <h2 class="step-title">
+                        Choose a nickname
+                    </h2>
+
+                    <p class="step-description">
+                        This is how you'll appear across Streetwise.
+                        You can change it anytime in Preferences.
+                    </p>
+
+
+                    <p
+                        id="nicknameSignupMessage"
+                        class="message-box"
+                    ></p>
+
+
+                    <div class="form-group">
+
+                        <label for="signupNickname">
+                            Nickname
+                        </label>
+
+                        <input
+                            type="text"
+                            id="signupNickname"
+                            placeholder="Enter a nickname"
+                            maxlength="20"
+                        >
+
+                    </div>
+
+
+                    <div class="step-buttons">
+
+                        <button
+                            type="button"
+                            class="step-back"
+                            onclick="goToSignupStep2()"
+                        >
+                            Back
+                        </button>
+
+                        <button
+                            type="button"
+                            class="step-continue"
+                            onclick="finishSignup()"
+                        >
+                            Create account
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-switch">
+
+                Already have an account?
+
+                <button
+                    onclick="showPage('loginPage')"
+                >
+                    Log in
+                </button>
+
+            </div>
+
+
+            <button
+                class="back-home"
+                onclick="showPage('homePage')"
+            >
+                ← Back to Streetwise
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- credits popup -->
+
+<div
+    class="credits-overlay"
+    id="creditsOverlay"
+    onclick="closeCredits(event)"
+>
+
+    <div class="credits-box">
+
+
+        <button
+            class="credits-close"
+            onclick="toggleCredits()"
+            aria-label="Close credits"
+        >
+            ×
+        </button>
+
+
+        <div class="credits-header">
+
+            <h2>
+                Streetwise
+            </h2>
+
+            <p>
+                Hands-on Information Technology Learning
+                Platform to develop technical skills through
+                interactive labs and case studies.
+            </p>
+
+        </div>
+
+
+        <div class="credits-content">
+
+            <h3 class="credits-section-title">
+                Created by
+            </h3>
+
+
+            <div class="creator-grid">
+
+
+                <div class="creator-card">
+
+                    <div class="creator-top">
+
+                        <div class="creator-icon">
+
+                            <img
+                                src="prajwal.png"
+                                alt="PS"
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="creator-name">
+                                Prajwal Shrestha
+                            </h3>
+
+                            <p class="creator-role">
+                                Design & Development
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p class="creator-description">
+                        Responsible for the development, design,
+                        structure, and functionality of Streetwise. CCST Networking Certified
+                    </p>
+
+                </div>
+
+
+                <div class="creator-card">
+
+                    <div class="creator-top">
+
+                        <div class="creator-icon">
+
+                            <img
+                                src="shemmy.png"
+                                alt="ST"
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="creator-name">
+                                Shemmy Taiwo
+                            </h3>
+
+                            <p class="creator-role">
+                                Design & Development
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p class="creator-description">
+                        Responsible for the development and creation
+                        of the Streetwise learning experience. CCST Networking Certified
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="project-info">
+
+                <h3>
+                    About Streetwise
+                </h3>
+
+                <p>
+                    Streetwise was created to make IT education
+                    more engaging and practical. Instead of only
+                    reading about technology, students can now learn by
+                    working through exercises, simulations, and
+                    realistic IT challenges. The website was created as part
+                    of the Congressional App Challenge, a nationwide competition for
+                    students to create apps and websites. Due to the background of the
+                    creators, we decided to focus the project on IT education while
+                    making the website as interactive and practical as possible.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- preferences popup -->
+
+<div
+    class="credits-overlay"
+    id="preferencesOverlay"
+    onclick="closePreferencesOnBackdrop(event)"
+>
+
+    <div class="credits-box">
+
+
+        <button
+            class="credits-close"
+            onclick="closePreferences()"
+            aria-label="Close preferences"
+        >
+            ×
+        </button>
+
+
+        <div class="credits-header">
+
+            <h2>
+                Preferences
+            </h2>
+
+            <p>
+                Manage your account, appearance, and learning
+                experience.
+            </p>
+
+        </div>
+
+
+        <div class="credits-content">
+
+
+            <!-- account info -->
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Account
+                </h3>
+
+                <div class="prefs-info-row">
+                    <span>Email</span>
+                    <span id="prefsEmail">—</span>
+                </div>
+
+                <div class="prefs-info-row">
+                    <span>IT level</span>
+                    <span id="prefsLevel">—</span>
+                </div>
+
+            </div>
+
+
+            <!-- nickname -->
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Nickname
+                </h3>
+
+                <p class="prefs-section-desc">
+                    This is shown in the navigation bar and can be
+                    changed anytime.
+                </p>
+
+                <div class="prefs-nickname-row">
+
+                    <input
+                        type="text"
+                        id="prefsNicknameInput"
+                        maxlength="20"
+                        placeholder="Enter a nickname"
+                    >
+
+                    <button
+                        type="button"
+                        class="prefs-save-button"
+                        onclick="savePrefsNickname()"
+                    >
+                        Save
+                    </button>
+
+                </div>
+
+                <p
+                    id="prefsNicknameMessage"
+                    class="message-box"
+                ></p>
+
+            </div>
+
+
+            <!-- appearance -->
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Appearance
+                </h3>
+
+                <div class="toggle-row">
+
+                    <div class="toggle-label">
+
+                        <h4>
+                            Dark mode
+                        </h4>
+
+                        <p>
+                            Switch Streetwise to a darker color
+                            palette.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle-switch">
+
+                        <input
+                            type="checkbox"
+                            id="darkModeToggle"
+                            onchange="handleDarkModeToggle(this)"
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- learning preferences -->
+
+            <div class="prefs-section">
+
+                <h3 class="prefs-section-title">
+                    Learning preferences
+                </h3>
+
+                <p class="prefs-section-desc">
+                    Choose the topics you'd like Streetwise to
+                    emphasize in your lessons and labs.
+                </p>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic1"
+                        class="topic-checkbox"
+                        value="Networking"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic1">Networking</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic2"
+                        class="topic-checkbox"
+                        value="Security"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic2">Security</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic3"
+                        class="topic-checkbox"
+                        value="Hardware & Devices"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic3">Hardware & Devices</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic4"
+                        class="topic-checkbox"
+                        value="Operating Systems"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic4">Operating Systems</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic5"
+                        class="topic-checkbox"
+                        value="Cloud Computing"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic5">Cloud Computing</label>
+                </div>
+
+                <div class="topic-row">
+                    <input
+                        type="checkbox"
+                        id="topic6"
+                        class="topic-checkbox"
+                        value="Programming Basics"
+                        onchange="handleLearningTopicToggle(this)"
+                    >
+                    <label for="topic6">Programming Basics</label>
+                </div>
+
+            </div>
+
+
+            <!-- log out -->
+
+            <button
+                type="button"
+                class="prefs-logout-button"
+                onclick="logoutUser()"
+            >
+                Log out
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- javascript -->
+
+<script src="scripts/theme.js"></script>
+<script src="scripts/auth.js"></script>
+<script src="scripts/index-ui.js"></script>
+
+</body>
+</html>

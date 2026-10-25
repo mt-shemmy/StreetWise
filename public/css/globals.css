@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Streetwise Global Styles & Unified Theme System
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-page: #E1EFF6;
+    --bg-secondary: #f5f7fb;
+    --bg-hover: #ffffff;
+    --card-bg: #ffffff;
+    --text-primary: #171725;
+    --text-secondary: #53647a;
+    --text-tertiary: #83BCFF;
+    --text-muted: #83BCFF;
+    --divider-text: #83BCFF;
+    --border-color: #ECCBD9;
+    --border-color-strong: #83BCFF;
+    --border-hover: #97D2FB;
+    --input-border: #ECCBD9;
+    --stat-border: #ECCBD9;
+    --nav-border: #ECCBD9;
+    --accent: #83BCFF;
+    --accent-tint: #f0f8ff;
+    --accent-tint-selected: #E1EFF6;
+    --accent-bg: #97D2FB;
+    --accent-bg-hover: #83BCFF;
+    --accent-focus-shadow: rgba(131, 188, 255, 0.2);
+    --accent-select-shadow: rgba(131, 188, 255, 0.15);
+    --link-color: #83BCFF;
+    --disabled-bg: #ECCBD9;
+    --disabled-text: #ffffff;
+    --toggle-off: #ECCBD9;
+    --shadow-soft: rgba(0, 0, 0, 0.07);
+    --shadow-card: rgba(0, 0, 0, 0.06);
+    --shadow-strong: rgba(0, 0, 0, 0.25);
+    --overlay-bg: rgba(10, 10, 18, 0.58);
+    --msg-info-bg: #E1EFF6;
+    --msg-info-text: #83BCFF;
+    --msg-success-bg: #eaf7ee;
+    --msg-success-text: #83bcff;
+    --msg-error-bg: #fdecea;
+    --msg-error-text: #b42318;
+}
+
+body.dark-mode {
+    --bg-page: #070c14;
+    --bg-secondary: #101a29;
+    --bg-hover: #1e2a3d;
+    --card-bg: #0b1220;
+    --text-primary: #E1EFF6;
+    --text-secondary: #97D2FB;
+    --text-tertiary: #83BCFF;
+    --text-muted: #30435a;
+    --divider-text: #30435a;
+    --border-color: #1e2a3d;
+    --border-color-strong: #30435a;
+    --border-hover: #83BCFF;
+    --input-border: #30435a;
+    --stat-border: #1e2a3d;
+    --nav-border: #1e2a3d;
+    --accent: #1f5793;
+    --accent-tint: #101a29;
+    --accent-tint-selected: #1e2a3d;
+    --accent-bg: #30435a;
+    --accent-bg-hover: #83BCFF;
+    --accent-focus-shadow: rgba(128, 255, 232, 0.2);
+    --accent-select-shadow: rgba(128, 255, 232, 0.15);
+    --link-color: #80FFE8;
+    --disabled-bg: #101a29;
+    --disabled-text: #30435a;
+    --toggle-off: #1e2a3d;
+    --shadow-soft: rgba(0, 0, 0, 0.4);
+    --shadow-card: rgba(0, 0, 0, 0.35);
+    --shadow-strong: rgba(0, 0, 0, 0.6);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --msg-info-bg: #101a29;
+    --msg-info-text: #97D2FB;
+    --msg-success-bg: #101a29;
+    --msg-success-text: #1f5793;
+    --msg-error-bg: #30435a;
+    --msg-error-text: #ECCBD9;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-page);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button, input {
+    font: inherit;
+}
