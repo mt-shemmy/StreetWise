@@ -101,9 +101,26 @@ button,input{font:inherit}
 }
 
 .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
     font-size:27px;
     font-weight:bold;
     cursor:pointer;
+    user-select:none;
+}
+.nav-logo-image{
+    height:42px;
+    max-height:46px;
+    width:auto;
+    object-fit:contain;
+    border-radius:6px;
+    display:block;
+    transition:transform .2s ease, opacity .2s ease;
+}
+.logo:hover .nav-logo-image{
+    transform:scale(1.04);
+    opacity:.95;
 }
 
 .nav-buttons{
